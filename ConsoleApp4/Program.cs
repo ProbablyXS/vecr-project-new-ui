@@ -40,7 +40,6 @@ class Program
         catch (HttpListenerException ex)
         {
             Console.WriteLine($"Erreur HttpListener : {ex.Message}");
-            Console.WriteLine("Assurez-vous que votre programme est exécuté en tant qu'administrateur.");
         }
     }
 
@@ -88,7 +87,7 @@ class Program
                         webSockets.Add(webSocket);
                     }
 
-                    Console.WriteLine("Nouveau client WebSocket connecté.");
+                    Console.WriteLine("New client WebSocket connected.");
 
                     _ = ReceiveWebSocketMessages(webSocket); // Gérer la réception en tâche de fond
                     continue;
@@ -101,7 +100,7 @@ class Program
 
                 string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string requestedPath = request.Url.AbsolutePath.TrimStart('/');
-                string fullPath = Path.Combine(exeDirectory, requestedPath);
+                string fullPath = Path.Combine(exeDirectory + "/menu", requestedPath);
 
                 // Gérer /getconfig GET
                 if (request.Url.AbsolutePath == "/getconfig" && request.HttpMethod == "GET")
@@ -242,7 +241,7 @@ class Program
                 }
                 else
                 {
-                    string htmlFilePath = Path.Combine(exeDirectory, "index.html");
+                    string htmlFilePath = Path.Combine(exeDirectory, "menu/index.html");
                     if (File.Exists(htmlFilePath))
                     {
                         string html = File.ReadAllText(htmlFilePath);

@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\NEW UI VECR PROJECT\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Desktop\\vecr-project-new-ui\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5A24BC10-D001-4B7F-901F-53BD41A82CE8}|ConsoleApp4\\ConsoleApp4.csproj|c:\\users\\admin\\desktop\\new ui vecr project\\consoleapp4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5A24BC10-D001-4B7F-901F-53BD41A82CE8}|ConsoleApp4\\ConsoleApp4.csproj|c:\\users\\admin\\desktop\\vecr-project-new-ui\\consoleapp4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5A24BC10-D001-4B7F-901F-53BD41A82CE8}|ConsoleApp4\\ConsoleApp4.csproj|solutionrelative:consoleapp4\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\NEW UI VECR PROJECT\\ConsoleApp4\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\vecr-project-new-ui\\ConsoleApp4\\Program.cs",
               "RelativeDocumentMoniker": "ConsoleApp4\\Program.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\NEW UI VECR PROJECT\\ConsoleApp4\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\vecr-project-new-ui\\ConsoleApp4\\Program.cs",
               "RelativeToolTip": "ConsoleApp4\\Program.cs",
-              "ViewState": "AgIAANUAAAAAAAAAAAAAADYAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAANQAAAAAAAAAAAAAAN0AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-24T21:00:35.594Z",
               "EditorCaption": ""
