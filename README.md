@@ -1,35 +1,35 @@
 # vecr-project-new-ui
 
-Une interface utilisateur moderne et réactive pour le projet VECR, développée en C# avec Visual Studio.
+A modern and responsive user interface for the VECR project, developed in C# using Visual Studio.
 
 ---
 
 ## 🚀 Showcase
 
-[![Regarder la démo sur YouTube](https://img.youtube.com/vi/H26gze1Gurk/0.jpg)](https://www.youtube.com/watch?v=H26gze1Gurk)
+[![Watch the demo on YouTube](https://img.youtube.com/vi/H26gze1Gurk/0.jpg)](https://www.youtube.com/watch?v=H26gze1Gurk)
 
-> 🎬 Cliquez sur l’image pour voir la démonstration vidéo de l'application.
-
----
-
-## 📦 Fonctionnalités
-
-- Interface utilisateur fluide
-- Application Windows native
-- Design propre et accessible
-- Build simple via Visual Studio
+> 🎬 Click the image to watch the demo video of the application.
 
 ---
 
-## ⚙️ Prérequis
+## 📦 Features
 
-- Windows avec Visual Studio installé (version 2019 ou supérieure)
-- .NET Framework ou .NET SDK (selon ce que ton projet utilise)
+- Smooth and responsive UI
+- Native Windows application
+- Clean and accessible design
+- Simple build with Visual Studio
 
 ---
 
-## 🛠️ Installation & Exécution
+## ⚙️ Requirements
 
-1. Clonez ce dépôt :
+- Windows with Visual Studio installed (2019 or later)
+- .NET Framework or .NET SDK (depending on your project)
+
+---
+
+## 🛠️ Installation & Execution
+
+1. Clone this repository:
    ```bash
    git clone https://github.com/ProbablyXS/vecr-project-new-ui.git
