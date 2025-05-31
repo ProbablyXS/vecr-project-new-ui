@@ -1,0 +1,516 @@
+/* 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#SS%%%???????????????%%%SS#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@#S%%???%%%%%%%%%%%%%%????????????%S#@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@#%%%%SSSSSSSSS%%%SSSSSSSSSSS%%??????????%S@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@#S%SSSS%%%???????????????????%%SSSSS%?????????S#@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@#SSSSS%%????????????%%%SSSSSSSSS%%%??%%SSS%????????%#@#@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@#SSSS%??????????%SS#@@@@@@@@@@@@@@@@@@@#S%%%SS%%???????%SSS@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@#SS%?????????%S#@@@@@@@@@@@@@@@@@@@@@@##@@@@##S%SS%???????SS%S@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@S %????????%#@@@@@@@@@@@@@@#@@@@@#S@@@S?%@@@@@@@@#SSS%??????%#%%#@@@@@@@@@@
+//@@@@@@@@@@@@@S %???????%S@@@@@@@@@@@@@@@SS#@#SSS#@#S??%@@@@@@@@@@@###%???????SS?S@@@@@@@@@
+//@@@@@@@@@@@@%???????%SS#@@@@@@@@@@@@#%%%SSSSS#SS%?%S#@@@@@@@@@@@@@@@@#???????#S?S@@@@@@@@@
+//@@@@@@@@@@#???????%SSS#@@@@@@@@@@@#S???%??%%%%%S##@@@#SS%%%S@@@@@@@@@@#%??????#%?%@@@@@@@@
+//@@@@@@@@@S ???????SS%S@@@@@@@@@@@@S???????%%S###SSSS%????%%SSSSSSSS#@@@@@%?????%#??%@@@@@@
+//@@@@@@@@S ??????%SS?S@@@@@@@@@@#S???????%S#SS%???%??????????????%%S##@@@@@%?????SS??S@@@@@
+//@@@@@@@#??????%#%?S@@@@@@@@@S%?????????S@S%%???????????????????%%SS#@@@@@#?????%#???#@@@@@
+//@@@@@@@%?????%#%?S@@@@@@@#%???%%???????%%%%SS%?????????????????????%%S@@@@S?????#%??%@@@@@
+//@@@@@@S ?????%#%?%@@@@@@@#???%@S%????????%%SS#@%???????????????????%S###@@@@?????SS???#@@@
+//@@@@@@%?????#%??S@@@@#S%????%%???????%SSSSSS#@@##SS%%???????????????%#@@@@@S????#S???%@@@@
+//@@@@@@?????SS???@@S%???????%%S###%??%S%?%SS#@@@@@@@@@@S%??????????????%@@@@#????#S???%@@@@
+//@@@@@@?????#%???@S????%%%S#@@@@@@%??????%#@@@@@@@@@@@@@@#%?????????????%@@@#????S%????#@@@
+//@@@@@@????%#????@#%%##@@@@@@@@@@#???%%%#@@@@@@@@@@@@@@@@@@%??????????%#%%@@#???%#%????@@@@
+//@@@@@@????SS????@@@@@@@@@@@@@@@#%?%#@@@@@@@@@@@@@@@@@@@@@@@%??????????#@#@@#???SS?????@@@@
+//@@@@@@????S%????#@@@@@@@@@@##%???%@@@@@@@@@@@@@@@@@@@@@@@@@#??????????S@@@@S??%#%????%@@@@
+//@@@@@@%???S%????S@@@@@@@@@@#%???S@@@@@@@@@@@@@@@@@@@@@@@@@@#??????????S@@@@%??SS?????S@@@@
+//@@@@@@S ???S%????%@@@@@@@@@@@@##@@@@@@@@@@@@@@@@@@@@@@@@@@@@#??????????#@@@S??SS?????%@@@@
+//@@@@@@@%??SS?????S@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@S??????%%?S@@@@%?SS??????S@@@@@
+//@@@@@@@S ??%#??????#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%?????S@@#@@@@%?SS??????%@@@@@
+//@@@@@@@@%??SS?????%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%????%#@@@@@@@%%S%??????%@@@@@@@
+//@@@@@@@@@%?%#%?????%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%???%S@@@@@@@#%%S%??????%@@@@@@@@
+//@@@@@@@@@@%?%S??????%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@S???%#@@@@@@@@S%S%???????S@@@@@@@@@
+//@@@@@@@@@@@S? SS???????S@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#S??%S@@@@@@@@@@SS%???????%#@@@@@@@@@
+//@@@@@@@@@@@@S?SS???????%###@@@@@@@@@@@@@@@@@@@@@@@#SSS#@@@@@@@@@@@@S%????????S@@@@@@@@@@@@
+//@@@@@@@@@@@@@#%%S%???????%SSS#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%%????????%S@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@S%SS????????%SSSS#@@@@@@@@@@@@@@@@@@@@@@@@@@@#S%?????????%SSS#@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@SSS%????????%SSS%%%S#@@@@@@@@@@@@@@@@##S%%??????????%SSSS#@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@###%????????%%SSS%%??%%%%%%%%%%%%%????????????%%SS%%S#@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@#S%?????????%%SSSS%%%??????????????%%%%SSSS%%%S@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@#S%??????????%%%SSSSSSSSSSSSSSSSSS%%%??%S@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#S%%????????????????%%%????????%%S#@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#SS%%?????????????%%%SS##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+*/
+
+/* Dark theme (default) */
+:root {
+    --bg-color-menu: #2B2B2B;
+    --bg-color: #252525;
+    --text-color: #FFF0F0;
+    --header-color: #2B2B2B;
+    --tab-button-bg-color: #FF8000;
+}
+
+/* White theme */
+body.light-theme {
+    --bg-color: #f5f5f5;
+    --bg-color-menu: #ffffff;
+    --text-color: #1c1c1e;
+    --header-color: #e0e0e0;
+    --tab-button-bg-color: #ffa500;
+}
+
+
+
+
+
+
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    object-fit: cover;
+    pointer-events: none;
+    filter: saturate(0.5) blur(13.1px);
+    animation: blurPulse 5s infinite ease-in-out,
+        moveBg 30s infinite ease-in-out;
+}
+
+.menu {
+    background-color: var(--bg-color-menu);
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px 2px rgb(255 128 0 / 50%);
+    animation: glowing-shadow 20s infinite linear;
+}
+
+.header {
+    position: relative;
+}
+
+.header h1 {
+    color: #FF8000;
+    margin: 0;
+    font-size: 24px;
+}
+
+.header h2 {
+    color: #AAA;
+    margin: 5px 0 20px;
+    font-size: 16px;
+}
+
+.header-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header img {
+    width: 50px;
+}
+
+.header-button button {
+    color: var(--tab-button-bg-color);
+    background-color: unset;
+    transition: color 1s ease;
+}
+
+.header-button button:hover {
+    background-color: unset;
+}
+
+.header-button svg {
+    transition: stroke 0.4s ease;
+    color: currentColor;
+}
+
+
+.header-button svg {
+    transition: transform 0.4s ease, stroke 0.4s ease;
+}
+
+.header-button button:hover svg {
+    transform: rotate(20deg) scale(1.1);
+    stroke: var(--tab-button-bg-color);
+    /* Changement de couleur */
+}
+
+.header-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tab-button {
+    background-color: #333;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active,
+.tab-button:hover {
+    background-color: var(--tab-button-bg-color);
+    color: #000;
+}
+
+.tab-content {
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: opacity 0.5s linear, max-height 0.3s linear, padding 0.3s cubic-bezier(0.35, 0.9, 0.47, 1.07), visibility 0.3s ease;
+}
+
+.tab-content h3 {
+    margin: 0;
+}
+
+.tab-content li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.tab-content.hidden {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: none;
+}
+
+button {
+    background-color: #FF8000;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffa733;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+input[type="range"] {
+    width: 150px;
+}
+
+input[type="color"] {
+    width: 40px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+select,
+input[type="number"],
+input[type="text"] {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #FFF;
+    margin-left: 10px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1E1E1E;
+    color: #FF8000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 1s ease 1s forwards;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.intro-content {
+    text-align: center;
+    animation: scaleIn 1s ease-out;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+
+@media (max-width: 700px) {
+    .menu {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        animation: unset;
+        box-shadow: unset;
+    }
+
+    .bg-image {
+        animation: unset;
+    }
+
+    body {
+        display: flow;
+    }
+}
+
+@keyframes moveBg {
+    0% {
+        transform: scale(1.05) translate(0px, 0px);
+    }
+
+    15% {
+        transform: scale(1.06) translate(8px, -5px);
+    }
+
+    30% {
+        transform: scale(1.07) translate(-6px, 12px);
+    }
+
+    45% {
+        transform: scale(1.08) translate(10px, 4px);
+    }
+
+    60% {
+        transform: scale(1.06) translate(-12px, -10px);
+    }
+
+    75% {
+        transform: scale(1.09) translate(5px, 15px);
+    }
+
+    90% {
+        transform: scale(1.05) translate(-8px, 3px);
+    }
+
+    100% {
+        transform: scale(1.05) translate(0px, 0px);
+    }
+}
+
+@keyframes blurPulse {
+
+    0%,
+    100% {
+        filter: saturate(0.5) blur(10px);
+    }
+
+    50% {
+        filter: saturate(0.5) blur(13.1px);
+    }
+}
+
+@keyframes glowing-shadow {
+    0% {
+        box-shadow: 0 0 5px 2px rgb(255, 0, 0);
+        /* red */
+    }
+
+    25% {
+        box-shadow: 0 0 5px 2px rgb(0, 255, 0);
+        /* green */
+    }
+
+    50% {
+        box-shadow: 0 0 5px 2px rgb(0, 0, 255);
+        /* blue */
+    }
+
+    75% {
+        box-shadow: 0 0 5px 2px rgb(255, 255, 0);
+        /* yellow */
+    }
+
+    100% {
+        box-shadow: 0 0 5px 2px rgb(255, 0, 0);
+        /* back to red */
+    }
+}
+
+
+
+
+
+
+/* Shake stays the same */
+.menu.shake {
+    animation: intense-shake 0.5s ease-in-out;
+}
+
+@keyframes intense-shake {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-12px, 6px);
+    }
+
+    40% {
+        transform: translate(8px, -8px);
+    }
+
+    60% {
+        transform: translate(-10px, -5px);
+    }
+
+    80% {
+        transform: translate(6px, 7px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Explosion container stays the same */
+#explosion-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Enhanced particle style */
+.explosion-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(3px) brightness(2);
+    box-shadow: 0 0 15px currentColor, 0 0 30px currentColor;
+    animation: explode-particle 2s ease-out forwards;
+    will-change: transform, opacity;
+}
+
+
+/* Enhanced explosion animation */
+@keyframes explode-particle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+        filter: blur(3px) brightness(2);
+    }
+
+    10% {
+        opacity: 0.8;
+        filter: blur(2px) brightness(0.8);
+    }
+
+    50% {
+        opacity: 0.8;
+        filter: blur(0.1px) brightness(0.2);
+    }
+
+    80% {
+        opacity: 0.8;
+        filter: blur(0px) brightness(0.1);
+    }
+
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0.8);
+        opacity: 0;
+        filter: blur(3px) brightness(0);
+    }
+}

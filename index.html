@@ -1,0 +1,229 @@
+<!-- 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#SS%%%???????????????%%%SS#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@#S%%???%%%%%%%%%%%%%%????????????%S#@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@#%%%%SSSSSSSSS%%%SSSSSSSSSSS%%??????????%S@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@#S%SSSS%%%???????????????????%%SSSSS%?????????S#@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@#SSSSS%%????????????%%%SSSSSSSSS%%%??%%SSS%????????%#@#@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@#SSSS%??????????%SS#@@@@@@@@@@@@@@@@@@@#S%%%SS%%???????%SSS@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@#SS%?????????%S#@@@@@@@@@@@@@@@@@@@@@@##@@@@##S%SS%???????SS%S@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@S %????????%#@@@@@@@@@@@@@@#@@@@@#S@@@S?%@@@@@@@@#SSS%??????%#%%#@@@@@@@@@@
+//@@@@@@@@@@@@@S %???????%S@@@@@@@@@@@@@@@SS#@#SSS#@#S??%@@@@@@@@@@@###%???????SS?S@@@@@@@@@
+//@@@@@@@@@@@@%???????%SS#@@@@@@@@@@@@#%%%SSSSS#SS%?%S#@@@@@@@@@@@@@@@@#???????#S?S@@@@@@@@@
+//@@@@@@@@@@#???????%SSS#@@@@@@@@@@@#S???%??%%%%%S##@@@#SS%%%S@@@@@@@@@@#%??????#%?%@@@@@@@@
+//@@@@@@@@@S ???????SS%S@@@@@@@@@@@@S???????%%S###SSSS%????%%SSSSSSSS#@@@@@%?????%#??%@@@@@@
+//@@@@@@@@S ??????%SS?S@@@@@@@@@@#S???????%S#SS%???%??????????????%%S##@@@@@%?????SS??S@@@@@
+//@@@@@@@#??????%#%?S@@@@@@@@@S%?????????S@S%%???????????????????%%SS#@@@@@#?????%#???#@@@@@
+//@@@@@@@%?????%#%?S@@@@@@@#%???%%???????%%%%SS%?????????????????????%%S@@@@S?????#%??%@@@@@
+//@@@@@@S ?????%#%?%@@@@@@@#???%@S%????????%%SS#@%???????????????????%S###@@@@?????SS???#@@@
+//@@@@@@%?????#%??S@@@@#S%????%%???????%SSSSSS#@@##SS%%???????????????%#@@@@@S????#S???%@@@@
+//@@@@@@?????SS???@@S%???????%%S###%??%S%?%SS#@@@@@@@@@@S%??????????????%@@@@#????#S???%@@@@
+//@@@@@@?????#%???@S????%%%S#@@@@@@%??????%#@@@@@@@@@@@@@@#%?????????????%@@@#????S%????#@@@
+//@@@@@@????%#????@#%%##@@@@@@@@@@#???%%%#@@@@@@@@@@@@@@@@@@%??????????%#%%@@#???%#%????@@@@
+//@@@@@@????SS????@@@@@@@@@@@@@@@#%?%#@@@@@@@@@@@@@@@@@@@@@@@%??????????#@#@@#???SS?????@@@@
+//@@@@@@????S%????#@@@@@@@@@@##%???%@@@@@@@@@@@@@@@@@@@@@@@@@#??????????S@@@@S??%#%????%@@@@
+//@@@@@@%???S%????S@@@@@@@@@@#%???S@@@@@@@@@@@@@@@@@@@@@@@@@@#??????????S@@@@%??SS?????S@@@@
+//@@@@@@S ???S%????%@@@@@@@@@@@@##@@@@@@@@@@@@@@@@@@@@@@@@@@@@#??????????#@@@S??SS?????%@@@@
+//@@@@@@@%??SS?????S@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@S??????%%?S@@@@%?SS??????S@@@@@
+//@@@@@@@S ??%#??????#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%?????S@@#@@@@%?SS??????%@@@@@
+//@@@@@@@@%??SS?????%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%????%#@@@@@@@%%S%??????%@@@@@@@
+//@@@@@@@@@%?%#%?????%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%???%S@@@@@@@#%%S%??????%@@@@@@@@
+//@@@@@@@@@@%?%S??????%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@S???%#@@@@@@@@S%S%???????S@@@@@@@@@
+//@@@@@@@@@@@S? SS???????S@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#S??%S@@@@@@@@@@SS%???????%#@@@@@@@@@
+//@@@@@@@@@@@@S?SS???????%###@@@@@@@@@@@@@@@@@@@@@@@#SSS#@@@@@@@@@@@@S%????????S@@@@@@@@@@@@
+//@@@@@@@@@@@@@#%%S%???????%SSS#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#%%????????%S@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@S%SS????????%SSSS#@@@@@@@@@@@@@@@@@@@@@@@@@@@#S%?????????%SSS#@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@SSS%????????%SSS%%%S#@@@@@@@@@@@@@@@@##S%%??????????%SSSS#@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@###%????????%%SSS%%??%%%%%%%%%%%%%????????????%%SS%%S#@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@#S%?????????%%SSSS%%%??????????????%%%%SSSS%%%S@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@#S%??????????%%%SSSSSSSSSSSSSSSSSS%%%??%S@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#S%%????????????????%%%????????%%S#@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#SS%%?????????????%%%SS##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="VECR PROJECT" />
+  <title>Menu DECEIT 2 - VECR PROJECT</title>
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <meta name="theme-color" content="#1E1E1E" />
+
+  <script defer src="assets/js/script.js"></script>
+</head>
+
+<body>
+
+  <div id="intro-overlay">
+    <div class="intro-content">
+      <img src="assets/img/favicon.png" alt="Project Logo" draggable="false" />
+    </div>
+  </div>
+
+
+  <img src="assets/img/bg.png" class="bg-image">
+  <main class="menu" role="main">
+    <header class="header">
+      <div class="header-menu">
+        <div class="titles">
+          <h1>DECEIT 2</h1>
+          <h2>VECR PROJECT</h2>
+        </div>
+        <div class="header-button">
+          <button id="theme-toggle" aria-label="Theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+          <img src="assets/img/favicon.png" alt="Project Logo" class="icon-right easter-egg" draggable="false" />
+        </div>
+      </div>
+      <div id="explosion-container"></div>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab-button active" role="tab" aria-selected="true" data-tab="home">HOME</button>
+      <button class="tab-button" role="tab" data-tab="aimbot">AIMBOT</button>
+      <button class="tab-button" role="tab" data-tab="esp">ESP</button>
+      <button class="tab-button" role="tab" data-tab="styles">STYLES</button>
+      <button class="tab-button" role="tab" data-tab="misc">MISC</button>
+      <button class="tab-button" role="tab" data-tab="settings">SETTINGS</button>
+    </nav>
+
+    <section class="tab-content" id="home" role="tabpanel">
+      <h3>Welcome: <span id="pc-name">NomPC</span></h3>
+      <p>Current version: <strong>1.0.0.0</strong></p>
+      <p>Build name: <strong>Spy</strong></p>
+      <p>Expires: <span id="expiry">--/--/----</span></p>
+    </section>
+
+    <!-- Repeat pattern for each section below -->
+    <section class="tab-content hidden" id="aimbot" role="tabpanel">
+      <h3>Aimbot</h3>
+      <ul>
+        <li><label><input type="checkbox" /> Enable AIMBOT</label></li>
+        <li>FOV: <input type="range" min="1" max="180" id="aimbot_fov" /><span id="aimbot_fov_val">90</span></li>
+        <li><label><input type="checkbox" /> Auto Fire</label></li>
+        <li>Auto Fire Delay: <input type="range" min="1" max="1000" id="aimbot_auto_fire_ms" /> ms</li>
+        <li><label><input type="checkbox" /> Draw Aim FOV</label></li>
+        <li><label><input type="checkbox" /> Draw Enemy Close</label></li>
+        <li>Aim key: <input type="text" placeholder="e.g. ALT" /></li>
+        <li>
+          Filter:
+          <select id="aimbot_filter">
+            <option value="1">CROSSHAIR</option>
+            <option value="2">DISTANCE</option>
+          </select>
+        </li>
+        <li>
+          Target:
+          <select id="aimbot_target">
+            <option value="1">HEAD</option>
+            <option value="2">BODY</option>
+            <option value="3">FOOT</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ESP Section -->
+    <section class="tab-content hidden" id="esp" role="tabpanel">
+      <h3>ESP</h3>
+      <ul>
+        <li><label><input type="checkbox" id="esp_enable_esp" /> Enable ESP</label></li>
+        <li>
+          Form:
+          <select id="esp_form">
+            <option value="1">Rectangle</option>
+            <option value="2">Edges</option>
+            <option value="3">Filled Rect</option>
+            <option value="4">Ellipse</option>
+          </select>
+        </li>
+        <li>Size: <input type="range" min="1" max="10" id="esp_size" /></li>
+        <li>Distance: <input type="range" min="100" max="5000" /></li>
+        <li><label><input type="checkbox" /> Show innocents</label></li>
+        <li><label><input type="checkbox" /> Show character name</label></li>
+        <li><label><input type="checkbox" /> Show distance</label></li>
+        <li><label><input type="checkbox" /> Show ping</label></li>
+        <li><label><input type="checkbox" /> Snapline</label></li>
+        <li>
+          Starting point:
+          <select id="esp_snapline_start_point">
+            <option value="1">TOP LEFT</option>
+            <option value="2">CENTER TOP</option>
+            <option value="3">TOP RIGHT</option>
+            <option value="4">CENTER</option>
+          </select>
+        </li>
+      </ul>
+    </section>
+
+    <!-- STYLES -->
+    <section class="tab-content hidden" id="styles" role="tabpanel">
+      <h3>Styles</h3>
+      <ul>
+        <li>Enemies color: <input type="color" /></li>
+        <li>Allies color: <input type="color" /></li>
+        <li>Border color: <input type="color" /></li>
+        <li>Snapline color: <input type="color" /></li>
+        <li>Crosshair color: <input type="color" /></li>
+        <li>FOV circle color: <input type="color" /></li>
+        <li>Menu color: <input type="color" /></li>
+        <li>Player name color: <input type="color" /></li>
+        <li>Player ping color: <input type="color" /></li>
+        <li>Background color: <input type="color" /></li>
+      </ul>
+    </section>
+
+    <!-- MISC -->
+    <section class="tab-content hidden" id="misc" role="tabpanel">
+      <h3>Misc</h3>
+      <ul>
+        <li><label><input type="checkbox" id="misc_crosshair" /> Crosshair</label></li>
+        <li>Crosshair size: <input type="range" min="1" max="10" id="misc_crosshair_size" /></li>
+        <li>Crosshair thickness: <input type="range" min="1" max="10" id="misc_crosshair_thickness" /></li>
+        <li><label><input type="checkbox" id="misc_show_text_border" /> Text border</label></li>
+        <li>ESP text size: <input type="range" min="1" max="20" id="misc_text_size" /></li>
+        <li>Font text: <input type="text" id="misc_font_text" placeholder="e.g. Arial" /></li>
+        <li><label><input type="checkbox" id="misc_transparency" /> Transparency</label></li>
+      </ul>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="tab-content hidden" id="settings" role="tabpanel">
+      <h3>Settings</h3>
+      <ul>
+        <li>FPS: <input type="number" id="settings_fps" /></li>
+        <li>Show menu key: <input type="text" id="settings_show_menu" /></li>
+        <li><label><input type="checkbox" id="settings_overlay" /> Overlay</label></li>
+        <li><label><input type="checkbox" id="settings_fps_checkbox" /> Show FPS</label></li>
+        <li><label><input type="checkbox" id="settings_vsync" /> VSync</label></li>
+        <li>
+          FPS overlay position:
+          <select id="settings_fps_corner">
+            <option value="1">Top left</option>
+            <option value="2">Top right</option>
+            <option value="3">Bottom left</option>
+            <option value="4">Bottom right</option>
+          </select>
+        </li>
+        <li>Menu opacity: <input type="range" min="0" max="100" step="1" id="settings_menu_opacity" /></li>
+        <li><label><input type="checkbox" id="settings_anti_aliasing" /> Anti-aliasing</label></li>
+      </ul>
+    </section>
+  </main>
+</body>
+
+</html>
