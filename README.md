@@ -23,6 +23,8 @@ Une interface utilisateur moderne et réactive pour le projet VECR, développée
 
 ## 🚀 Showcase / Démo
 
+https://probablyxs.github.io/vecr-project-new-ui/
+
 [![Watch the demo on YouTube](https://img.youtube.com/vi/H26gze1Gurk/0.jpg)](https://www.youtube.com/watch?v=H26gze1Gurk)  
 🎬 Click the image to watch the video demonstration.  
 🎬 Cliquez sur l'image pour voir la démonstration vidéo.
