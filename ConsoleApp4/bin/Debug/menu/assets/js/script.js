@@ -44,45 +44,6 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("theme-toggle");
-  const themeToggle = document.getElementById('theme-toggle');
-  const icon = themeToggle.querySelector('svg');
-  const body = document.body;
-
-  // Charger le thème sauvegardé
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    body.classList.add("light-theme");
-    icon.classList.toggle('active');
-  }
-
-  // Inverser le thème au clic
-  toggle.addEventListener("click", () => {
-    body.classList.toggle("light-theme");
-
-    // Sauvegarder
-    if (body.classList.contains("light-theme")) {
-      localStorage.setItem("theme", "light");
-    } else {
-      localStorage.setItem("theme", "dark");
-    }
-  });
-});
-
-
-
-
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const intro = document.getElementById('intro-overlay');
-    if (intro) intro.remove();
-  }, 4000); // after animation completes
-});
-
-
 const tabs = document.querySelectorAll('.tab-button');
 const contents = document.querySelectorAll('.tab-content');
 
@@ -106,8 +67,8 @@ document.getElementById("expiry").textContent = "31/12/2025";
 
 async function loadIniData() {
   try {
-    const response = await fetch('/configdata');  // Endpoint à définir
-    if (!response.ok) throw new Error('Erreur lors du chargement des données INI');
+    const response = await fetch('/configdata');
+    if (!response.ok) throw new Error('Error loading INI data');
     const iniData = await response.json();
 
     for (const [key, value] of Object.entries(iniData)) {
@@ -122,12 +83,30 @@ async function loadIniData() {
         input.checked = value.toLowerCase() === "true";
       } else {
         input.value = value;
+
+        if (key === "Aim_FOV") {
+          const fovValueDisplay = document.getElementById('aimbot_fov_val');
+          if (fovValueDisplay) fovValueDisplay.textContent = value;
+        }
+        if (key === "Auto_Fire_MS") {
+          const autoFireDisplay = document.getElementById('aimbot_auto_fire_ms_val');
+          if (autoFireDisplay) autoFireDisplay.textContent = value + "ms";
+        }
       }
     }
+
+    // Call the stickman update after loading data
+    if (typeof window.updateStickmanPanelStyle === "function") {
+      window.updateStickmanPanelStyle();
+    }
+
   } catch (err) {
     console.error(err);
   }
 }
+
+
+
 
 function sendIniUpdate(key, value) {
   fetch('/updateconfig', {
@@ -164,12 +143,12 @@ const map = {
   // [AIMBOT]
   "Enable_AIMBOT": ["checkbox", "#aimbot input[type='checkbox']", 0],
   "Aim_FOV": ["range", "#aimbot input[type='range']", 0],
-  "Draw_Aim_Fov": ["checkbox", "#aimbot input[type='checkbox']", 2],
-  "Draw_Enemy_Close": ["checkbox", "#aimbot input[type='checkbox']", 3],
-  "Aim_Filter": ["select", "#aimbot select", 0],
-  "Aim_Target": ["select", "#aimbot select", 1],
-  "AIM_Key": ["text", "#aimbot input[type='text']", 0],
-  "Auto_Fire": ["checkbox", "#aimbot input[type='checkbox']", 1],
+  "Draw_Aim_Fov": ["checkbox", "#aimbot input[type='checkbox']", 1],
+  "Draw_Enemy_Close": ["checkbox", "#aimbot input[type='checkbox']", 2],
+  "AIM_Key": ["select", "#aimbot select", 0],
+  "Aim_Filter": ["select", "#aimbot select", 1],
+  "Aim_Target": ["select", "#aimbot select", 2],
+  "Auto_Fire": ["checkbox", "#aimbot input[type='checkbox']", 3],
   "Auto_Fire_MS": ["range", "#aimbot input[type='range']", 1],
 
   // [ESP]

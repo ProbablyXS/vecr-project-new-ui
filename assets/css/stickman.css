@@ -1,0 +1,157 @@
+/* Thème */
+:root {
+    --stick-man-color: #2B2B2B;
+    --weapon-color: #111;
+}
+
+/* Panel container */
+#stickman-panel {
+    position: absolute;
+    top: 156px;
+    right: 8px;
+    background: var(--stick-man-color);
+    border: 2px solid #444;
+    border-radius: 5px;
+    padding: 30px;
+    display: none;
+    z-index: 9999;
+    animation: idle-bob 2s infinite ease-in-out;
+}
+
+/* Stickman layout */
+.stickman {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    bottom: 30px;
+    right: 4px;
+    align-items: center;
+    animation: idle-bob 0.8s infinite ease-in-out;
+}
+
+.stickman .pseudo {
+    position: absolute;
+    top: -32px;
+    font-size: 10px;
+    text-wrap-mode: nowrap;
+    font-weight: bold;
+    color: var(--text-color);
+    text-shadow: 0 0 3px #000;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Head */
+.stickman .head {
+    width: 26px;
+    height: 26px;
+    background: var(--stick-man-color);
+    border-radius: 50%;
+    margin-bottom: 4px;
+    animation: glowing-shadow 20s infinite linear;
+}
+
+/* Torso */
+.stickman .torso {
+    position: relative;
+    width: 4px;
+    height: 35px;
+    background: var(--stick-man-color);
+    animation: glowing-shadow 20s infinite linear;
+}
+
+/* Arms */
+.stickman .arm {
+    position: absolute;
+    width: 14px;
+    height: 4px;
+    background: var(--stick-man-color);
+    top: 10px;
+    transform-origin: left center;
+    animation: glowing-shadow 20s infinite linear;
+}
+
+/* Left arm (free) */
+.stickman .arm.left {
+    left: 4px;
+    transform: rotate(25deg);
+}
+
+/* Right arm (holds weapon) */
+.stickman .arm.right {
+    /* left: 4px; */
+    transform: rotate(0deg);
+    width: 40px;
+}
+
+/* Weapon */
+.stickman .weapon {
+    position: absolute;
+    top: 12px;
+    left: 23px;
+    height: 4px;
+    background: var(--weapon-color);
+    border-radius: 2px;
+    box-shadow: 0 0 1px #fff4 inset,
+        8px 0 0 2px var(--weapon-color),
+        -6px 0 0 2px var(--weapon-color);
+}
+
+/* Legs */
+.stickman .leg {
+    position: absolute;
+    width: 4px;
+    height: 30px;
+    background: var(--stick-man-color);
+    top: 42px;
+    transform-origin: top center;
+}
+
+/* Normal leg positions */
+.stickman .leg.left {
+    left: -6px;
+    animation: moving-leg-left 1.5s infinite linear, glowing-shadow 20s infinite linear;
+}
+
+.stickman .leg.right {
+    left: 6px;
+    animation: moving-leg-right 1.5s infinite linear, glowing-shadow 20s infinite linear;
+}
+
+
+/* Idle animation */
+@keyframes idle-bob {
+
+    0%,
+    100% {
+        transform: translateY(9px);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+@keyframes moving-leg-left {
+
+    0%,
+    100% {
+        transform: rotate(9deg) translateX(1px) translateY(1px);
+    }
+
+    50% {
+        transform: rotate(3deg) translateX(0px);
+    }
+}
+
+@keyframes moving-leg-right {
+
+    0%,
+    100% {
+        transform: rotate(7deg) translateX(1px) translateY(1px);
+    }
+
+    50% {
+        transform: rotate(17deg) translateX(0px);
+    }
+}

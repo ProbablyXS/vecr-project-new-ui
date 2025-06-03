@@ -56,10 +56,15 @@
   <title>Menu DECEIT 2 - VECR PROJECT</title>
 
   <link rel="icon" href="assets/img/favicon.png" type="image/x-icon" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/stickman.css" />
   <meta name="theme-color" content="#1E1E1E" />
 
   <script defer src="assets/js/script.js"></script>
+  <script defer src="assets/js/intro.js"></script>
+  <script defer src="assets/js/theme.js"></script>
+  <script defer src="assets/js/stickman.js"></script>
+  <script defer src="assets/js/keys.js"></script>
 </head>
 
 <body>
@@ -80,12 +85,38 @@
           <h2>VECR PROJECT</h2>
         </div>
         <div class="header-button">
-          <button id="theme-toggle" aria-label="Theme">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-            </svg>
-          </button>
+          <div class="status-dot">
+            <span>FPS: 60</span>
+          </div>
+          <div class="header-option">
+            <button id="theme-toggle" aria-label="Theme">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+            <button id="stickman-toggle" aria-label="Stickman">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+          </div>
+          <div id="stickman-panel">
+            <div class="stickman">
+              <div class="pseudo">VECR PROJECT</div>
+              <div class="head"></div>
+              <div class="torso">
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+                <div class="weapon"></div>
+                <div class="leg left"></div>
+                <div class="leg right"></div>
+              </div>
+            </div>
+          </div>
+
           <img src="assets/img/favicon.png" alt="Project Logo" class="icon-right easter-egg" draggable="false" />
         </div>
       </div>
@@ -108,32 +139,46 @@
       <p>Expires: <span id="expiry">--/--/----</span></p>
     </section>
 
-    <!-- Repeat pattern for each section below -->
     <section class="tab-content hidden" id="aimbot" role="tabpanel">
       <h3>Aimbot</h3>
       <ul>
-        <li><label><input type="checkbox" /> Enable AIMBOT</label></li>
-        <li>FOV: <input type="range" min="1" max="180" id="aimbot_fov" /><span id="aimbot_fov_val">90</span></li>
-        <li><label><input type="checkbox" /> Auto Fire</label></li>
-        <li>Auto Fire Delay: <input type="range" min="1" max="1000" id="aimbot_auto_fire_ms" /> ms</li>
-        <li><label><input type="checkbox" /> Draw Aim FOV</label></li>
-        <li><label><input type="checkbox" /> Draw Enemy Close</label></li>
-        <li>Aim key: <input type="text" placeholder="e.g. ALT" /></li>
-        <li>
-          Filter:
-          <select id="aimbot_filter">
-            <option value="1">CROSSHAIR</option>
-            <option value="2">DISTANCE</option>
-          </select>
-        </li>
-        <li>
-          Target:
-          <select id="aimbot_target">
-            <option value="1">HEAD</option>
-            <option value="2">BODY</option>
-            <option value="3">FOOT</option>
-          </select>
-        </li>
+        <div id="main" class="owner">
+          <li><label><input type="checkbox" /> Enable AIMBOT</label></li>
+        </div>
+        <div id="FOV" class="cat border">
+          <li>FOV: <input type="range" min="1" max="180" id="aimbot_fov" /><span id="aimbot_fov_val">90</span></li>
+          <li><label><input type="checkbox" /> Draw Aim FOV</label></li>
+          <li><label><input type="checkbox" /> Draw Enemy Close</label></li>
+        </div>
+        <div id="Aim" class="cat border">
+          <li>
+            Aim key:
+            <select id="aimKeySelect"></select>
+          </li>
+          <li>
+            Filter:
+            <select>
+              <option value="1">CROSSHAIR</option>
+              <option value="2">DISTANCE</option>
+            </select>
+          </li>
+          <li>
+            Target:
+            <select>
+              <option value="1">HEAD</option>
+              <option value="2">BODY</option>
+              <option value="3">FOOT</option>
+            </select>
+          </li>
+        </div>
+        <div id="Auto Fire" class="cat">
+          <li><label><input type="checkbox" /> Auto Fire</label></li>
+          <li>
+            Auto Fire Delay:
+            <input type="range" min="1" max="1000" id="aimbot_auto_fire_ms" />
+            <span id="aimbot_auto_fire_ms_val">500</span>
+          </li>
+        </div>
       </ul>
     </section>
 
@@ -141,7 +186,9 @@
     <section class="tab-content hidden" id="esp" role="tabpanel">
       <h3>ESP</h3>
       <ul>
-        <li><label><input type="checkbox" id="esp_enable_esp" /> Enable ESP</label></li>
+        <div id="main" class="owner">
+          <li><label><input type="checkbox" id="esp_enable_esp" /> Enable ESP</label></li>
+        </div>
         <li>
           Form:
           <select id="esp_form">
@@ -174,29 +221,36 @@
     <section class="tab-content hidden" id="styles" role="tabpanel">
       <h3>Styles</h3>
       <ul>
-        <li>Enemies color: <input type="color" /></li>
-        <li>Allies color: <input type="color" /></li>
-        <li>Border color: <input type="color" /></li>
-        <li>Snapline color: <input type="color" /></li>
-        <li>Crosshair color: <input type="color" /></li>
-        <li>FOV circle color: <input type="color" /></li>
-        <li>Menu color: <input type="color" /></li>
-        <li>Player name color: <input type="color" /></li>
-        <li>Player ping color: <input type="color" /></li>
-        <li>Background color: <input type="color" /></li>
+        <li>Enemies color: <input type="color" id="style_enemy_color" /></li>
+        <li>Allies color: <input type="color" id="style_allies_color" /></li>
+        <li>Border color: <input type="color" id="style_border_color" /></li>
+        <li>Snapline color: <input type="color" id="style_snapline_color" /></li>
+        <li>Crosshair color: <input type="color" id="style_crosshair_color" /></li>
+        <li>FOV circle color: <input type="color" id="style_fov_color" /></li>
+        <li>Menu color: <input type="color" id="style_menu_color" /></li>
+        <li>Player name color: <input type="color" id="style_name_color" /></li>
+        <li>Player ping color: <input type="color" id="style_ping_color" /></li>
+        <li>Background color: <input type="color" id="style_background_color" /></li>
       </ul>
     </section>
+
 
     <!-- MISC -->
     <section class="tab-content hidden" id="misc" role="tabpanel">
       <h3>Misc</h3>
       <ul>
-        <li><label><input type="checkbox" id="misc_crosshair" /> Crosshair</label></li>
-        <li>Crosshair size: <input type="range" min="1" max="10" id="misc_crosshair_size" /></li>
-        <li>Crosshair thickness: <input type="range" min="1" max="10" id="misc_crosshair_thickness" /></li>
-        <li><label><input type="checkbox" id="misc_show_text_border" /> Text border</label></li>
-        <li>ESP text size: <input type="range" min="1" max="20" id="misc_text_size" /></li>
-        <li>Font text: <input type="text" id="misc_font_text" placeholder="e.g. Arial" /></li>
+        <div id="main" class="owner">
+          <li><label><input type="checkbox" id="misc_crosshair" />Enable CROSSHAIR</label></li>
+        </div>
+        <div id="FOV" class="cat border">
+          <li>Crosshair size: <input type="range" min="1" max="10" id="misc_crosshair_size" /></li>
+          <li>Crosshair thickness: <input type="range" min="1" max="10" id="misc_crosshair_thickness" /></li>
+        </div>
+        <div id="main" class="owner">
+          <li><label><input type="checkbox" id="misc_show_text_border" /> Text border</label></li>
+          <li>ESP text size: <input type="range" min="1" max="20" id="misc_text_size" /></li>
+          <li>Font text: <input type="text" id="misc_font_text" placeholder="e.g. Arial" /></li>
+        </div>
         <li><label><input type="checkbox" id="misc_transparency" /> Transparency</label></li>
       </ul>
     </section>
