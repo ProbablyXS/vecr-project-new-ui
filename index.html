@@ -64,7 +64,7 @@
   <script defer src="assets/js/script.js"></script>
   <script defer src="assets/js/intro.js"></script>
   <script defer src="assets/js/theme.js"></script>
-  <script defer src="assets/js/stickman.js"></script>
+  <script defer src="assets/js/widget.js"></script>
   <script defer src="assets/js/keys.js"></script>
   <script defer src="assets/js/easter_egg.js"></script>
 </head>
@@ -120,21 +120,22 @@
       <button class="tab-button" role="tab" data-tab="settings">SETTINGS</button>
     </nav>
 
+    <div class="widgets" id="widgets">
+      <div id="crosshair-panel">
+        <div class="crosshair" id="crosshair"></div>
+      </div>
 
-    <div id="crosshair-panel">
-      <div class="crosshair"></div>
-    </div>
-
-    <div id="stickman-panel">
-      <div class="stickman">
-        <div class="pseudo">VECR PROJECT</div>
-        <div class="head"></div>
-        <div class="torso">
-          <div class="arm left"></div>
-          <div class="arm right"></div>
-          <div class="weapon"></div>
-          <div class="leg left"></div>
-          <div class="leg right"></div>
+      <div id="stickman-panel">
+        <div class="stickman">
+          <div class="pseudo">VECR PROJECT</div>
+          <div class="head"></div>
+          <div class="torso">
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="weapon"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -196,7 +197,7 @@
         <div id="main" class="owner">
           <li><label><input type="checkbox" id="esp_enable_esp" /> Enable ESP</label></li>
         </div>
-        <div class="cat">
+        <div id="ESP" class="cat border">
           <li>
             Form:
             <select id="esp_form">
@@ -213,6 +214,8 @@
           <li><label><input type="checkbox" /> Show innocents</label></li>
           <li><label><input type="checkbox" id="esp_show_character_names" /> Show character names</label></li>
           <li><label><input type="checkbox" id="esp_show_distances" /> Show distances</label></li>
+        </div>
+        <div id="Snapline" class="cat">
           <li><label><input type="checkbox" /> Show snaplines</label></li>
           <li>
             Snapline Position:
@@ -227,7 +230,6 @@
               <option value="8">BOTTOM CENTER</option>
               <option value="9">BOTTOM RIGHT</option>
             </select>
-
           </li>
         </div>
       </ul>
@@ -241,8 +243,10 @@
           <li><label><input type="checkbox" id="misc_crosshair" />Enable CROSSHAIR</label></li>
         </div>
         <div class="cat border">
-          <li>Crosshair size: <input type="range" min="1" max="10" id="misc_crosshair_size" /></li>
-          <li>Crosshair thickness: <input type="range" min="1" max="10" id="misc_crosshair_thickness" /></li>
+          <li>Crosshair size: <input type="range" min="1" max="10" id="misc_crosshair_size" /><span
+              id="misc_crosshair_size_val">1</span></li>
+          <li>Crosshair thickness: <input type="range" min="1" max="10" id="misc_crosshair_thickness" /><span
+              id="misc_crosshair_thickness_val">1</span></li>
         </div>
         <div id="main" class="owner">
           <li><label><input type="checkbox" id="misc_show_text_border" /> Text border</label></li>
@@ -263,7 +267,6 @@
         <li>Snapline color: <input type="color" id="style_snapline_color" /></li>
         <li>Crosshair color: <input type="color" id="style_crosshair_color" /></li>
         <li>FOV circle color: <input type="color" id="style_fov_color" /></li>
-        <li>Menu color: <input type="color" id="style_menu_color" /></li>
         <li>Player name color: <input type="color" id="style_name_color" /></li>
         <li>Player ping color: <input type="color" id="style_ping_color" /></li>
         <li>Background color: <input type="color" id="style_background_color" /></li>

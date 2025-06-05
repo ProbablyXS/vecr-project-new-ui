@@ -139,6 +139,7 @@ body {
     border-radius: 2px;
     box-shadow: 0 0 2px 2px rgb(255 128 0 / 50%);
     animation: glowing-shadow 20s infinite linear;
+    overflow: hidden;
 }
 
 .header {
@@ -240,6 +241,18 @@ body {
     flex-direction: row;
 }
 
+.widgets {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    padding: 16px;
+    animation: glowing-shadow 20s infinite linear;
+    margin-bottom: 20px;
+    background-color: var(--bg-color);
+    justify-content: space-around;
+    gap: 26px;
+}
 
 .tabs {
     display: flex;
@@ -613,7 +626,7 @@ input::-webkit-inner-spin-button {
 
 @media (max-width: 700px) {
     .menu {
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         animation: unset;

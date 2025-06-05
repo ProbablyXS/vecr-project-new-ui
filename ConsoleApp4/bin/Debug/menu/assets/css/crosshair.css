@@ -1,18 +1,18 @@
 #crosshair-panel {
-    position: absolute;
-    z-index: 1000;
-    margin: 24px 0 0 485px;
+    display: flex;
     pointer-events: none;
     border-style: solid;
     background: var(--bg-color);
     border-color: transparent;
-    padding: 6px;
-    animation: glowing-shadow 20s infinite linear;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 10px;
 }
 
 .crosshair {
-    width: 24px;
-    height: 24px;
+    padding: 10px;
     position: relative;
 }
 
@@ -20,13 +20,13 @@
 .crosshair::after {
     content: "";
     position: absolute;
-    background-color: red;
+    background-color: var(--crosshair-color);
 }
 
 .crosshair::before {
     left: 50%;
     top: 0;
-    width: 2px;
+    width: var(--crosshair-thickness, 10px);
     height: 100%;
     transform: translateX(-50%);
 }
@@ -34,7 +34,7 @@
 .crosshair::after {
     top: 50%;
     left: 0;
-    height: 2px;
+    height: var(--crosshair-thickness, 10px);
     width: 100%;
     transform: translateY(-50%);
 }

@@ -47,12 +47,19 @@
 
 
 (function () {
+  const widgets = document.getElementById("widgets");
   const toggle = document.getElementById("stickman-toggle");
   const panel = document.getElementById("stickman-panel");
-  const crosshairPanel = document.getElementById("crosshair-panel"); // Added: crosshair panel
+  const crosshairPanel = document.getElementById("crosshair-panel");
+  const crosshair = document.getElementById("crosshair");
   const formSelect = document.getElementById("esp_form");
   const espSize = document.getElementById("esp_size");
+  const miscCrosshairSizeInput = document.getElementById("misc_crosshair_size");
+  const miscCrosshairThicknessInput = document.getElementById("misc_crosshair_thickness");
+
   const borderColorInput = document.getElementById("style_border_color");
+  const crosshairColorInput = document.getElementById("style_crosshair_color");
+  const styleNameColorColorInput = document.getElementById("style_name_color");
 
   const characterNamesCheckBox = document.getElementById("esp_show_character_names");
   const characterNames = document.querySelectorAll(".pseudo");
@@ -61,11 +68,12 @@
   const tabs = document.querySelectorAll(".tab-button");
 
   tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    if (panel) panel.style.display = "none";
-    if (crosshairPanel) crosshairPanel.style.display = "none";
+    tab.addEventListener("click", () => {
+      if (widgets) widgets.style.display = "none";
+      if (panel) panel.style.display = "none";
+      if (crosshairPanel) crosshairPanel.style.display = "none";
+    });
   });
-});
 
 
   function updatePanelStyle() {
@@ -75,10 +83,6 @@
     const formValue = formSelect?.value || "1";
     const sizeValue = espSize?.value || "1";
 
-    // STYLES
-    const borderColor = borderColorInput?.value || "#ff0000";
-
-    // Handle pseudo visibility
     const charNamesVisible = characterNamesCheckBox?.checked;
     characterNames.forEach(el => {
       if (charNamesVisible) {
@@ -131,6 +135,19 @@
       }
     });
 
+    // MISC
+    const miscCrosshairSizeValue = miscCrosshairSizeInput?.value || "1";
+    const miscCrosshairThicknessValue = miscCrosshairThicknessInput?.value || "1";
+
+    crosshair.style.padding = `${miscCrosshairSizeValue}px `;
+
+    crosshair.style.setProperty('--crosshair-thickness', `${miscCrosshairThicknessValue}px`);
+
+    // STYLES
+    const borderColor = borderColorInput?.value || "#ff0000";
+    const stylesCrossHairColorValue = crosshairColorInput?.value || "#ff0000";
+    const stylesPlayerNameColorValue = styleNameColorColorInput?.value || "#ff0000";
+
     // Reset styles
     panel.classList.remove("rectangle", "edges", "filled", "ellipse");
     panel.style.border = "none";
@@ -158,51 +175,57 @@
         panel.style.borderRadius = "50%";
         break;
     }
+
+    //STYLES
+    crosshair.style.setProperty('--crosshair-color', `${stylesCrossHairColorValue}`);
+
+    characterNames.forEach((el) => {
+      el.style.color = stylesPlayerNameColorValue;
+      const span = el.querySelector("span");
+      if (span) {
+        span.style.color = stylesPlayerNameColorValue;
+      }
+    });
   }
 
-  
-const crosshairColorInput = document.getElementById("style_crosshair_color");
 
-if (crosshairColorInput) {
-  crosshairColorInput.addEventListener("focus", () => {
-    // Affiche le crosshair
-    if (crosshairPanel) {
-      crosshairPanel.style.display = "block";
+
+  toggle?.addEventListener("click", () => {
+    const activeTab = document.querySelector(".tab-button.active")?.dataset.tab;
+
+    if (activeTab === "esp") {
+      widgets.style.display = widgets.style.display === "none" || !widgets.style.display ? "flex" : "none";
+
+      if (panel) {
+        panel.style.display = panel.style.display === "none" || !panel.style.display ? "block" : "none";
+      }
+
+    } else if (activeTab === "misc") {
+      if (crosshairPanel) {
+        widgets.style.display = widgets.style.display === "none" || !widgets.style.display ? "flex" : "none";
+
+        crosshairPanel.style.display = crosshairPanel.style.display === "none" || !crosshairPanel.style.display ? "flex" : "none";
+      }
     }
-    // Cache le stickman au cas où
-    if (panel) {
-      panel.style.display = "none";
+
+    else if (activeTab === "styles") {
+      widgets.style.display = widgets.style.display === "none" || !widgets.style.display ? "flex" : "none";
+
+      if (panel) {
+        panel.style.display = panel.style.display === "none" || !panel.style.display ? "block" : "none";
+      }
+      if (crosshairPanel) {
+        crosshairPanel.style.display = crosshairPanel.style.display === "none" || !crosshairPanel.style.display ? "flex" : "none";
+      }
     }
+
   });
-
-  crosshairColorInput.addEventListener("blur", () => {
-    // Cache le crosshair
-    if (crosshairPanel) {
-      crosshairPanel.style.display = "none";
-    }
-  });
-}
-
-toggle?.addEventListener("click", () => {
-  const activeTab = document.querySelector(".tab-button.active")?.dataset.tab;
-
-  if (activeTab === "esp") {
-    if (panel) {
-      panel.style.display = panel.style.display === "none" || !panel.style.display ? "block" : "none";
-    }
-    if (crosshairPanel) crosshairPanel.style.display = "none";
-  } else if (activeTab === "misc") {
-    if (crosshairPanel) {
-      crosshairPanel.style.display = crosshairPanel.style.display === "none" || !crosshairPanel.style.display ? "block" : "none";
-    }
-    if (panel) panel.style.display = "none";
-  }
-});
 
   // Listeners
   formSelect?.addEventListener("change", updatePanelStyle);
   espSize?.addEventListener("change", updatePanelStyle);
   characterNamesCheckBox?.addEventListener("change", updatePanelStyle);
+  miscCrosshairSizeInput?.addEventListener("change", updatePanelStyle);
   document.getElementById("esp_show_distances")?.addEventListener("change", updatePanelStyle);
   borderColorInput?.addEventListener("input", updatePanelStyle);
 

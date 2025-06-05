@@ -6,17 +6,16 @@
 
 /* Panel container */
 #stickman-panel {
-    position: absolute;
-    margin: 122px 0px 0px 459px;
     background: var(--stick-man-color);
     border: 2px solid #444;
     border-radius: 5px;
+    display: flex;
     padding: 28px;
-    display: none;
-    height: 53px;
-    width: 2px;
-    z-index: 9999;
     animation: idle-bob 2s infinite ease-in-out;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Stickman layout */

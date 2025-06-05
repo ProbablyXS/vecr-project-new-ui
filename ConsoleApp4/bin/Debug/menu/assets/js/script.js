@@ -105,6 +105,18 @@ async function loadIniData() {
           if (espDistanceValueDisplay) espDistanceValueDisplay.textContent = value + "m";
         }
 
+
+        //MISC
+        if (key === "Crosshair_Size") {
+          const miscCrossHairValueDisplay = document.getElementById('misc_crosshair_size_val');
+          if (miscCrossHairValueDisplay) miscCrossHairValueDisplay.textContent = value;
+        }
+
+        if (key === "Crosshair_Thickness") {
+          const miscThicknessValueDisplay = document.getElementById('misc_crosshair_thickness_val');
+          if (miscThicknessValueDisplay) miscThicknessValueDisplay.textContent = value;
+        }
+
       }
     }
 
@@ -169,10 +181,10 @@ const map = {
   "ESP_Form": ["select", "#esp select", 0],
   "ESP_Size": ["range", "#esp input[type='range']", 0],
   "ESP_Max_Distance": ["range", "#esp input[type='range']", 1],
-  "Show_Allies": ["checkbox", "#esp input[type='checkbox']", 1],
-  "Show_Character_Name": ["checkbox", "#esp input[type='checkbox']", 2],
-  "Show_Distance": ["checkbox", "#esp input[type='checkbox']", 3],
-  "Show_Ping": ["checkbox", "#esp input[type='checkbox']", 4],
+  "Show_Enemies": ["checkbox", "#esp input[type='checkbox']", 1],
+  "Show_Allies": ["checkbox", "#esp input[type='checkbox']", 2],
+  "Show_Character_Name": ["checkbox", "#esp input[type='checkbox']", 3],
+  "Show_Distance": ["checkbox", "#esp input[type='checkbox']", 4],
   "Enable_Snapline": ["checkbox", "#esp input[type='checkbox']", 5],
   "Snapline_Size": ["range", "#esp input[type='range']", 2],
   "Snapline_Starting_Point": ["select", "#esp select", 1],
@@ -194,10 +206,9 @@ const map = {
   "Snapline_Color": ["color", "#styles input[type='color']", 3],
   "Crosshair_Color": ["color", "#styles input[type='color']", 4],
   "FOV_Color": ["color", "#styles input[type='color']", 5],
-  "Menu_Color": ["color", "#styles input[type='color']", 6],
-  "Player_Name_Color": ["color", "#styles input[type='color']", 7],
-  "Player_Ping_Color": ["color", "#styles input[type='color']", 8],
-  "Background": ["color", "#styles input[type='color']", 9],
+  "Player_Name_Color": ["color", "#styles input[type='color']", 6],
+  "Player_Ping_Color": ["color", "#styles input[type='color']", 7],
+  "Background": ["color", "#styles input[type='color']", 8],
 
   // [SETTINGS]
   "Show_FPS": ["checkbox", "#settings input[type='checkbox']", 1],
