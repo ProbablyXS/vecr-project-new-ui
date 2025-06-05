@@ -114,10 +114,9 @@ body {
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .bg-image {
@@ -213,6 +212,10 @@ body {
     justify-content: flex-end;
 }
 
+.header-button-all {
+    display: flex;
+}
+
 .status-dot::before {
     content: "";
     background: var(--success-color);
@@ -230,7 +233,7 @@ body {
 }
 
 .header-option {
-    margin-right: 24px;
+    margin-right: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -421,32 +424,6 @@ input::-webkit-inner-spin-button {
     }
 }
 
-
-
-
-@media (max-width: 700px) {
-    .menu {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        animation: unset;
-        box-shadow: unset;
-    }
-
-    .bg-image {
-        animation: unset;
-    }
-
-    body {
-        display: flow;
-    }
-
-    .tabs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
 @keyframes moveBg {
     0% {
         transform: scale(1.05) translate(0px, 0px);
@@ -627,4 +604,63 @@ input::-webkit-inner-spin-button {
     50% {
         opacity: 0.5;
     }
+}
+
+
+
+
+
+
+@media (max-width: 700px) {
+    .menu {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        animation: unset;
+        box-shadow: unset;
+    }
+
+    .bg-image {
+        animation: unset;
+    }
+
+    body {
+        display: flow;
+    }
+
+    .tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .header {
+        margin-bottom: 23px;
+    }
+
+    .header-menu {
+        align-items: center;
+    }
+
+    .titles {
+        display: flex;
+        gap: 6px;
+        flex-direction: column;
+    }
+
+    .header h2 {
+        margin: 0;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .header-button button {
+        height: 38px;
+    }
+
+    .header-button-all {
+        flex-direction: column-reverse;
+        margin-right: -10px;
+    }
+
 }
