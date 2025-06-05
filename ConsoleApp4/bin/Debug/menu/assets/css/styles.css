@@ -65,6 +65,39 @@ body.light-theme {
     --tab-button-bg-color: #ffa500;
 }
 
+/* Scrollbar styles for Webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color-menu);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tab-button-bg-color);
+    border-radius: 3px;
+    border: 1.5px solid var(--bg-color-menu);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff9a1a;
+    /* un peu plus clair au survol */
+}
+
+/* Scrollbar styles for Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--tab-button-bg-color) var(--bg-color-menu);
+}
+
+/* Scrollbar styles for body only (optionnel) */
+/* body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tab-button-bg-color) var(--bg-color-menu);
+} */
 
 
 
@@ -141,7 +174,7 @@ body {
     background-color: unset;
     transition: color 1s ease;
     outline: none;
-    width: 36px;
+    width: 48px;
 }
 
 .header-button span {
@@ -199,8 +232,9 @@ body {
 .header-option {
     margin-right: 24px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 
@@ -405,6 +439,11 @@ input::-webkit-inner-spin-button {
 
     body {
         display: flow;
+    }
+
+    .tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

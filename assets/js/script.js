@@ -84,6 +84,7 @@ async function loadIniData() {
       } else {
         input.value = value;
 
+        //AIMBOT
         if (key === "Aim_FOV") {
           const fovValueDisplay = document.getElementById('aimbot_fov_val');
           if (fovValueDisplay) fovValueDisplay.textContent = value;
@@ -92,6 +93,18 @@ async function loadIniData() {
           const autoFireDisplay = document.getElementById('aimbot_auto_fire_ms_val');
           if (autoFireDisplay) autoFireDisplay.textContent = value + "ms";
         }
+
+        //ESP
+        if (key === "ESP_Size") {
+          const espSizeValueDisplay = document.getElementById('esp_size_val');
+          if (espSizeValueDisplay) espSizeValueDisplay.textContent = value;
+        }
+
+        if (key === "ESP_Max_Distance") {
+          const espDistanceValueDisplay = document.getElementById('esp_distance_val');
+          if (espDistanceValueDisplay) espDistanceValueDisplay.textContent = value + "m";
+        }
+
       }
     }
 
@@ -241,65 +254,4 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   initWebSocket();
-});
-
-
-
-
-const icon = document.querySelector('.icon-right');
-const menu = document.querySelector('.menu');
-const explosionContainer = document.getElementById('explosion-container');
-let isAnimating = false;
-
-icon.addEventListener('click', () => {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  icon.classList.add('animate');
-  menu.classList.add('shake');
-
-  // Optional sound (you’ll add manually)
-  const sound = new Audio('assets/sounds/boom.mp3');
-  sound.play();
-
-  // Cool particle explosion
-  const rect = icon.getBoundingClientRect();
-  const menuRect = menu.getBoundingClientRect();
-
-  // Create multiple origins (e.g. 8 random ones inside .menu)
-  const origins = Array.from({ length: 8 }, () => ({
-    x: Math.random() * menuRect.width,
-    y: Math.random() * menuRect.height,
-  }));
-
-  origins.forEach(origin => {
-    for (let i = 0; i < 10; i++) { // 10 particles per origin = 80 total
-      const particle = document.createElement('div');
-      particle.className = 'explosion-particle';
-
-      const angle = Math.random() * 2 * Math.PI;
-      const radius = Math.random() * 100 + 30; // spread power
-      const x = Math.cos(angle) * radius;
-      const y = Math.sin(angle) * radius;
-
-      particle.style.setProperty('--x', `${x}px`);
-      particle.style.setProperty('--y', `${y}px`);
-      particle.style.left = `${origin.x}px`;
-      particle.style.top = `${origin.y}px`;
-
-      explosionContainer.appendChild(particle);
-
-      setTimeout(() => {
-        particle.remove();
-      }, 1000);
-    }
-  });
-
-
-  // Cleanup
-  setTimeout(() => {
-    icon.classList.remove('animate');
-    menu.classList.remove('shake');
-    isAnimating = false;
-  }, 1000);
 });

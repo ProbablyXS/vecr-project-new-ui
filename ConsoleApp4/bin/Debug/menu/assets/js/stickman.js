@@ -46,55 +46,180 @@
 
 
 
-(function(){
+(function () {
   const toggle = document.getElementById("stickman-toggle");
   const panel = document.getElementById("stickman-panel");
+  const crosshairPanel = document.getElementById("crosshair-panel"); // Added: crosshair panel
   const formSelect = document.getElementById("esp_form");
+  const espSize = document.getElementById("esp_size");
   const borderColorInput = document.getElementById("style_border_color");
+
+  const characterNamesCheckBox = document.getElementById("esp_show_character_names");
+  const characterNames = document.querySelectorAll(".pseudo");
+
+  // Added: tab buttons for toggling between ESP and MISC
+  const tabs = document.querySelectorAll(".tab-button");
+
+  tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    if (panel) panel.style.display = "none";
+    if (crosshairPanel) crosshairPanel.style.display = "none";
+  });
+});
+
 
   function updatePanelStyle() {
     if (!panel) return;
+
+    // ESP
     const formValue = formSelect?.value || "1";
+    const sizeValue = espSize?.value || "1";
+
+    // STYLES
     const borderColor = borderColorInput?.value || "#ff0000";
 
+    // Handle pseudo visibility
+    const charNamesVisible = characterNamesCheckBox?.checked;
+    characterNames.forEach(el => {
+      if (charNamesVisible) {
+        el.classList.remove("hidden");
+      } else {
+        el.classList.add("hidden");
+      }
+    });
+
+    // Handle distance display
+    const showDistance = document.getElementById("esp_show_distances")?.checked;
+    characterNames.forEach(el => {
+      let distanceSpan = el.querySelector(".distance");
+
+      // Stop any existing interval if hidden
+      if (!showDistance) {
+        if (distanceSpan) {
+          const intervalId = distanceSpan.dataset.intervalId;
+          if (intervalId) clearInterval(parseInt(intervalId));
+          distanceSpan.remove();
+        }
+        return;
+      }
+
+      // Create distance span if it doesn't exist
+      if (!distanceSpan) {
+        distanceSpan = document.createElement("span");
+        distanceSpan.className = "distance";
+        el.appendChild(distanceSpan);
+
+        // Start dynamic value
+        let distance = 5;
+        let increasing = true;
+
+        const intervalId = setInterval(() => {
+          if (increasing) {
+            distance += 50;
+            if (distance >= 5000) increasing = false;
+          } else {
+            distance -= 50;
+            if (distance <= 15) increasing = true;
+          }
+
+          distanceSpan.textContent = `[${Math.floor(distance / 10)}m]`;
+
+        }, 60);
+
+        // Store interval ID to clean up later
+        distanceSpan.dataset.intervalId = intervalId.toString();
+      }
+    });
+
+    // Reset styles
     panel.classList.remove("rectangle", "edges", "filled", "ellipse");
     panel.style.border = "none";
     panel.style.backgroundColor = "transparent";
     panel.style.borderRadius = "0";
 
+    // Apply ESP styles
     switch (formValue) {
       case "1":
         panel.classList.add("rectangle");
-        panel.style.border = `2px solid ${borderColor}`;
+        panel.style.border = `${sizeValue}px solid ${borderColor}`;
         break;
       case "2":
         panel.classList.add("edges");
-        panel.style.border = `2px dashed ${borderColor}`;
+        panel.style.border = `${sizeValue}px dashed ${borderColor}`;
         break;
       case "3":
         panel.classList.add("filled");
-        panel.style.border = `2px solid ${borderColor}`;
+        panel.style.border = `${sizeValue}px solid ${borderColor}`;
         panel.style.backgroundColor = borderColor + "33";
         break;
       case "4":
         panel.classList.add("ellipse");
-        panel.style.border = `2px solid ${borderColor}`;
+        panel.style.border = `${sizeValue}px solid ${borderColor}`;
         panel.style.borderRadius = "50%";
         break;
     }
   }
 
-  toggle?.addEventListener("click", () => {
-    if (!panel) return;
-    panel.style.display = panel.style.display === "none" || !panel.style.display ? "block" : "none";
+  
+const crosshairColorInput = document.getElementById("style_crosshair_color");
+
+if (crosshairColorInput) {
+  crosshairColorInput.addEventListener("focus", () => {
+    // Affiche le crosshair
+    if (crosshairPanel) {
+      crosshairPanel.style.display = "block";
+    }
+    // Cache le stickman au cas où
+    if (panel) {
+      panel.style.display = "none";
+    }
   });
 
+  crosshairColorInput.addEventListener("blur", () => {
+    // Cache le crosshair
+    if (crosshairPanel) {
+      crosshairPanel.style.display = "none";
+    }
+  });
+}
+
+toggle?.addEventListener("click", () => {
+  const activeTab = document.querySelector(".tab-button.active")?.dataset.tab;
+
+  if (activeTab === "esp") {
+    if (panel) {
+      panel.style.display = panel.style.display === "none" || !panel.style.display ? "block" : "none";
+    }
+    if (crosshairPanel) crosshairPanel.style.display = "none";
+  } else if (activeTab === "misc") {
+    if (crosshairPanel) {
+      crosshairPanel.style.display = crosshairPanel.style.display === "none" || !crosshairPanel.style.display ? "block" : "none";
+    }
+    if (panel) panel.style.display = "none";
+  }
+});
+
+  // Listeners
   formSelect?.addEventListener("change", updatePanelStyle);
+  espSize?.addEventListener("change", updatePanelStyle);
+  characterNamesCheckBox?.addEventListener("change", updatePanelStyle);
+  document.getElementById("esp_show_distances")?.addEventListener("change", updatePanelStyle);
   borderColorInput?.addEventListener("input", updatePanelStyle);
 
-  // Expose globally for external calls
+  // Initialize crosshair panel as hidden
+  if (crosshairPanel) crosshairPanel.style.display = "none";
+
+  // Initialize display based on active tab on load
+  const activeTab = document.querySelector(".tab-button.active");
+  if (activeTab?.dataset.tab === "esp") {
+    if (panel) panel.style.display = "block";
+  } else {
+    if (panel) panel.style.display = "none";
+  }
+
+  // Expose globally
   window.updateStickmanPanelStyle = updatePanelStyle;
 
-  // Initial call
+  // Initial render
   updatePanelStyle();
 })();

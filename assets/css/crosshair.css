@@ -1,0 +1,50 @@
+#crosshair-panel {
+    position: absolute;
+    z-index: 1000;
+    margin: 24px 0 0 485px;
+    pointer-events: none;
+    border-style: solid;
+    background: var(--bg-color);
+    border-color: transparent;
+    padding: 6px;
+    animation: glowing-shadow 20s infinite linear;
+}
+
+.crosshair {
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+
+.crosshair::before,
+.crosshair::after {
+    content: "";
+    position: absolute;
+    background-color: red;
+}
+
+.crosshair::before {
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.crosshair::after {
+    top: 50%;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+
+@media (max-width: 700px) {
+
+    #crosshair-panel {
+        margin: 0;
+        right: 48px;
+        top: 222px;
+    }
+}

@@ -45,26 +45,61 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("theme-toggle");
-  const themeToggle = document.getElementById('theme-toggle');
-  const icon = themeToggle.querySelector('svg');
-  const body = document.body;
 
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    body.classList.add("light-theme");
-    icon.classList.toggle('active');
-  }
+const icon = document.querySelector('.icon-right');
+const menu = document.querySelector('.menu');
+const explosionContainer = document.getElementById('explosion-container');
+let isAnimating = false;
 
-  toggle.addEventListener("click", () => {
-    body.classList.toggle("light-theme");
+icon.addEventListener('click', () => {
+  if (isAnimating) return;
+  isAnimating = true;
 
-    // Sauvegarder
-    if (body.classList.contains("light-theme")) {
-      localStorage.setItem("theme", "light");
-    } else {
-      localStorage.setItem("theme", "dark");
+  icon.classList.add('animate');
+  menu.classList.add('shake');
+
+  // Optional sound (you’ll add manually)
+  const sound = new Audio('assets/sounds/boom.mp3');
+  sound.play();
+
+  // Cool particle explosion
+  const rect = icon.getBoundingClientRect();
+  const menuRect = menu.getBoundingClientRect();
+
+  // Create multiple origins (e.g. 8 random ones inside .menu)
+  const origins = Array.from({ length: 8 }, () => ({
+    x: Math.random() * menuRect.width,
+    y: Math.random() * menuRect.height,
+  }));
+
+  origins.forEach(origin => {
+    for (let i = 0; i < 10; i++) { // 10 particles per origin = 80 total
+      const particle = document.createElement('div');
+      particle.className = 'explosion-particle';
+
+      const angle = Math.random() * 2 * Math.PI;
+      const radius = Math.random() * 100 + 30; // spread power
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * radius;
+
+      particle.style.setProperty('--x', `${x}px`);
+      particle.style.setProperty('--y', `${y}px`);
+      particle.style.left = `${origin.x}px`;
+      particle.style.top = `${origin.y}px`;
+
+      explosionContainer.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 1000);
     }
   });
+
+
+  // Cleanup
+  setTimeout(() => {
+    icon.classList.remove('animate');
+    menu.classList.remove('shake');
+    isAnimating = false;
+  }, 1000);
 });
