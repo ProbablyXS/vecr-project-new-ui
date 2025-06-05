@@ -117,6 +117,11 @@ async function loadIniData() {
           if (miscThicknessValueDisplay) miscThicknessValueDisplay.textContent = value;
         }
 
+        if (key === "Text_Size") {
+          const miscTextSizeValueDisplay = document.getElementById('misc_text_size_val');
+          if (miscTextSizeValueDisplay) miscTextSizeValueDisplay.textContent = value;
+        }
+
       }
     }
 
@@ -212,12 +217,11 @@ const map = {
 
   // [SETTINGS]
   "Show_FPS": ["checkbox", "#settings input[type='checkbox']", 1],
+  "Show_Menu": ["select", "#settings select", 0],
   "VSYNC": ["checkbox", "#settings input[type='checkbox']", 2],
   "FPS": ["number", "#settings input[type='number']", 0],
-  "FPS_Corner": ["select", "#settings select", 0],
-  "Show_Menu": ["text", "#settings input[type='text']", 0],
+  "FPS_Corner": ["select", "#settings select", 1],
   "Show_Overlay": ["checkbox", "#settings input[type='checkbox']", 0],
-  "Menu_Opacity": ["range", "#settings input[type='range']", 0],
   "Anti_Aliasing": ["checkbox", "#settings input[type='checkbox']", 3],
   "GameWidth": ["number", "#settings input[type='number']", 1],
   "GameHeight": ["number", "#settings input[type='number']", 2],

@@ -250,7 +250,8 @@
         </div>
         <div id="main" class="owner">
           <li><label><input type="checkbox" id="misc_show_text_border" /> Text border</label></li>
-          <li>ESP text size: <input type="range" min="1" max="20" id="misc_text_size" /></li>
+          <li>Text size: <input type="range" min="1" max="20" id="misc_text_size" /><span
+              id="misc_text_size_val">1</span></li>
           <li>Text font: <input type="text" id="misc_font_text" placeholder="e.g. Arial" /></li>
         </div>
         <li><label><input type="checkbox" id="misc_transparency" /> Transparency</label></li>
@@ -278,7 +279,10 @@
       <h3>Settings</h3>
       <ul>
         <li>FPS: <input type="number" id="settings_fps" /></li>
-        <li>Menu toggle key: <input type="text" id="settings_show_menu" /></li>
+        <li>
+          Menu toggle key:
+          <select id="settings_show_menu"></select>
+        </li>
         <li><label><input type="checkbox" id="settings_overlay" /> Overlay</label></li>
         <li><label><input type="checkbox" id="settings_fps_checkbox" /> Show FPS</label></li>
         <li><label><input type="checkbox" id="settings_vsync" /> VSync</label></li>
@@ -291,7 +295,6 @@
             <option value="4">Bottom right</option>
           </select>
         </li>
-        <li>Menu opacity: <input type="range" min="0" max="100" step="1" id="settings_menu_opacity" /></li>
         <li><label><input type="checkbox" id="settings_anti_aliasing" /> Anti-aliasing</label></li>
       </ul>
     </section>
