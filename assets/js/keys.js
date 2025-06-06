@@ -145,3 +145,11 @@ for (const [value, label] of Object.entries(keys)) {
     option.textContent = label;
     select.appendChild(option);
 }
+
+const selectShowMenu = document.getElementById('settings_show_menu');
+for (const [value, label] of Object.entries(keys)) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = label;
+    selectShowMenu.appendChild(option);
+}
