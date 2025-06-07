@@ -190,7 +190,8 @@ const map = {
   "Show_Allies": ["checkbox", "#esp input[type='checkbox']", 2],
   "Show_Character_Name": ["checkbox", "#esp input[type='checkbox']", 3],
   "Show_Distance": ["checkbox", "#esp input[type='checkbox']", 4],
-  "Enable_Snapline": ["checkbox", "#esp input[type='checkbox']", 5],
+  "Show_Player_Names": ["checkbox", "#esp input[type='checkbox']", 5],
+  "Enable_Snapline": ["checkbox", "#esp input[type='checkbox']", 6],
   "Snapline_Size": ["range", "#esp input[type='range']", 2],
   "Snapline_Starting_Point": ["select", "#esp select", 1],
 

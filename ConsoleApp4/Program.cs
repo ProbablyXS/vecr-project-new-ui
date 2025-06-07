@@ -25,7 +25,7 @@ class Program
 
         try
         {
-            Thread listenerThread = new Thread(() => HandleRequests(port));
+            Thread listenerThread = new Thread(() => HandleRequests(port).Wait());
             listenerThread.Start();
 
             Console.WriteLine($"Serveur démarré, écoute sur http://localhost:{port}/");
@@ -89,7 +89,7 @@ class Program
 
                     Console.WriteLine("New client WebSocket connected.");
 
-                    _ = ReceiveWebSocketMessages(webSocket); // Gérer la réception en tâche de fond
+                    _ = ReceiveWebSocketMessages(webSocket);
                     continue;
                 }
 
@@ -102,7 +102,6 @@ class Program
                 string requestedPath = request.Url.AbsolutePath.TrimStart('/');
                 string fullPath = Path.Combine(exeDirectory + "/menu", requestedPath);
 
-                // Gérer /getconfig GET
                 if (request.Url.AbsolutePath == "/getconfig" && request.HttpMethod == "GET")
                 {
                     string iniFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "profiles/default/config.ini");
@@ -110,7 +109,9 @@ class Program
                     if (File.Exists(iniFilePath))
                     {
                         var iniDict = new Dictionary<string, string>();
-                        foreach (var line in File.ReadLines(iniFilePath))
+                        List<string> lines = ReadLinesWithShare(iniFilePath);
+
+                        foreach (var line in lines)
                         {
                             string trimmed = line.Trim();
                             if (!string.IsNullOrWhiteSpace(trimmed) && trimmed.Contains('=') && !trimmed.StartsWith("["))
@@ -141,13 +142,13 @@ class Program
                     continue;
                 }
 
-                // Gérer /configdata GET
                 if (request.Url.AbsolutePath == "/configdata" && request.HttpMethod == "GET")
                 {
                     string iniFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "profiles/default/config.ini");
                     var dict = new Dictionary<string, string>();
+                    List<string> lines = ReadLinesWithShare(iniFilePath);
 
-                    foreach (var line in File.ReadLines(iniFilePath))
+                    foreach (var line in lines)
                     {
                         var trimmed = line.Trim();
                         if (string.IsNullOrEmpty(trimmed) || trimmed.StartsWith("[") || !trimmed.Contains("=")) continue;
@@ -164,7 +165,6 @@ class Program
                     continue;
                 }
 
-                // Gérer /updateconfig POST
                 if (request.Url.AbsolutePath == "/updateconfig" && request.HttpMethod == "POST")
                 {
                     string iniFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "profiles/default/config.ini");
@@ -176,7 +176,7 @@ class Program
 
                         if (updateData != null && updateData.TryGetValue("key", out string key) && updateData.TryGetValue("value", out string value))
                         {
-                            var lines = File.ReadAllLines(iniFilePath).ToList();
+                            List<string> lines = ReadLinesWithShare(iniFilePath);
                             bool found = false;
 
                             for (int i = 0; i < lines.Count; i++)
@@ -200,7 +200,6 @@ class Program
                             response.ContentType = "application/json";
                             await response.OutputStream.WriteAsync(responseBytes, 0, responseBytes.Length);
 
-                            // Broadcast update to all WebSocket clients
                             await BroadcastWebSocketMessage("{\"type\":\"configUpdated\"}");
                         }
                         else
@@ -215,7 +214,6 @@ class Program
                     continue;
                 }
 
-                // Servir fichiers statiques
                 if (File.Exists(fullPath))
                 {
                     string extension = Path.GetExtension(fullPath).ToLower();
@@ -267,7 +265,6 @@ class Program
         }
     }
 
-    // Méthode pour broadcast WebSocket
     static async Task BroadcastWebSocketMessage(string message)
     {
         byte[] messageBuffer = Encoding.UTF8.GetBytes(message);
@@ -302,7 +299,6 @@ class Program
         }
     }
 
-    // Méthode pour gérer la réception (garder la connexion active)
     static async Task ReceiveWebSocketMessages(WebSocket ws)
     {
         var buffer = new byte[1024];
@@ -332,17 +328,55 @@ class Program
         }
     }
 
+    static List<string> ReadLinesWithShare(string path)
+    {
+        var lines = new List<string>();
+        using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        using (var reader = new StreamReader(stream))
+        {
+            while (!reader.EndOfStream)
+            {
+                lines.Add(reader.ReadLine());
+            }
+        }
+        return lines;
+    }
+
     static void WriteAllLinesWithoutBOM(string path, IEnumerable<string> lines)
     {
-        var utf8NoBom = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
-        using (var writer = new StreamWriter(path, false, utf8NoBom))
+        var utf8NoBom = new UTF8Encoding(false);
+        int retryCount = 5;
+        int delayMs = 50;
+
+        for (int i = 0; i < retryCount; i++)
         {
-            foreach (var line in lines)
+            try
             {
-                writer.WriteLine(line);
+                using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read))
+                using (var writer = new StreamWriter(fs, utf8NoBom))
+                {
+                    foreach (var line in lines)
+                    {
+                        writer.WriteLine(line);
+                    }
+                }
+
+                // Succès → on sort
+                return;
+            }
+            catch (IOException)
+            {
+                if (i == retryCount - 1)
+                {
+                    Console.WriteLine("Erreur : fichier verrouillé trop longtemps.");
+                    throw; // relancer si échec total
+                }
+
+                Thread.Sleep(delayMs); // Attendre un peu avant de réessayer
             }
         }
     }
+
 
     static void OpenBrowser(string url)
     {
