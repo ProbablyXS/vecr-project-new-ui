@@ -42,41 +42,19 @@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#SS%%?????????????%%%SS##@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@########@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
 
+let notificationTimeout;
+function showNotification(message, duration = 3000) {
+    const notif = document.getElementById('notification');
+    notif.textContent = message;
+    notif.classList.add('show');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("theme-toggle");
-  const themeToggle = document.getElementById('theme-toggle');
-  const icon = themeToggle.querySelector('svg');
-  const body = document.body;
-  const message = "activated";
+    // Clear tout timeout précédent si l'utilisateur spam
+    clearTimeout(notificationTimeout);
 
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    body.classList.add("light-theme");
-    icon.classList.toggle('active');
-  }
-
-  toggle.addEventListener("click", () => {
-    body.classList.toggle("light-theme");
-
-    // Toggle l’icône visuelle aussi
-    icon.classList.toggle('active');
-
-    // Sauvegarde le thème
-    if (body.classList.contains("light-theme")) {
-      localStorage.setItem("theme", "light");
-    } else {
-      localStorage.setItem("theme", "dark");
-    }
-
-    // Affiche une notification
-    showNotification(
-      body.classList.contains("light-theme")
-        ? "Light mode activated"
-        : "Dark mode activated"
-    );
-  });
-
-});
+    // Start new timeout
+    notificationTimeout = setTimeout(() => {
+        notif.classList.remove('show');
+    }, duration);
+}

@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById('theme-toggle');
   const icon = themeToggle.querySelector('svg');
   const body = document.body;
+  const message = "activated";
 
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "light") {
@@ -60,11 +61,22 @@ document.addEventListener("DOMContentLoaded", () => {
   toggle.addEventListener("click", () => {
     body.classList.toggle("light-theme");
 
-    // Sauvegarder
+    // Toggle l’icône visuelle aussi
+    icon.classList.toggle('active');
+
+    // Sauvegarde le thème
     if (body.classList.contains("light-theme")) {
       localStorage.setItem("theme", "light");
     } else {
       localStorage.setItem("theme", "dark");
     }
+
+    // Affiche une notification
+    showNotification(
+      body.classList.contains("light-theme")
+        ? "Light mode activated"
+        : "Dark mode activated"
+    );
   });
+
 });

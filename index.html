@@ -67,6 +67,8 @@
   <script defer src="assets/js/widget.js"></script>
   <script defer src="assets/js/keys.js"></script>
   <script defer src="assets/js/easter_egg.js"></script>
+  <script defer src="assets/js/notification.js"></script>
+  <script defer src="assets/js/copyright.js"></script>
 </head>
 
 <body>
@@ -150,7 +152,7 @@
     <section class="tab-content hidden" id="aimbot" role="tabpanel">
       <h3>Aimbot</h3>
       <ul>
-        <div id="main" class="owner">
+        <div id="AIMBOT" class="owner">
           <li><label><input type="checkbox" /> Enable AIMBOT</label></li>
         </div>
         <div id="FOV" class="cat border">
@@ -194,7 +196,7 @@
     <section class="tab-content hidden" id="esp" role="tabpanel">
       <h3>ESP</h3>
       <ul>
-        <div id="main" class="owner">
+        <div id="ESP" class="owner">
           <li><label><input type="checkbox" id="esp_enable_esp" /> Enable ESP</label></li>
         </div>
         <div id="ESP" class="cat border">
@@ -240,16 +242,14 @@
     <section class="tab-content hidden" id="misc" role="tabpanel">
       <h3>Misc</h3>
       <ul>
-        <div id="main" class="owner">
-          <li><label><input type="checkbox" id="misc_crosshair" />Enable CROSSHAIR</label></li>
-        </div>
+        <li class="owner"><label><input type="checkbox" id="misc_crosshair" />Enable CROSSHAIR</label></li>
         <div class="cat border">
           <li>Crosshair size: <input type="range" min="1" max="10" id="misc_crosshair_size" /><span
               id="misc_crosshair_size_val">1</span></li>
           <li>Crosshair thickness: <input type="range" min="1" max="10" id="misc_crosshair_thickness" /><span
               id="misc_crosshair_thickness_val">1</span></li>
         </div>
-        <div id="main" class="owner">
+        <div class="owner">
           <li><label><input type="checkbox" id="misc_show_text_border" /> Text border</label></li>
           <li>Text size: <input type="range" min="1" max="20" id="misc_text_size" /><span
               id="misc_text_size_val">1</span></li>
@@ -299,7 +299,11 @@
         <li><label><input type="checkbox" id="settings_anti_aliasing" /> Anti-aliasing</label></li>
       </ul>
     </section>
+    <footer class="footer">
+      <p id="copyright"></p>
+    </footer>
   </main>
+  <div id="notification" class="notification">Notification message</div>
 </body>
 
 </html>
